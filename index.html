@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Portfolio - Junior Roblox Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            background: rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .header-cta {
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+        
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .value-item {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .value-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+        
+        .value-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .skills-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 25px;
+        }
+        
+        .skills-list {
+            list-style: none;
+        }
+        
+        .skills-list li {
+            background: #f8f9ff;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .skills-list li:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .capability-item {
+            background: #f8f9ff;
+            border: 2px solid #e1e5f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .capability-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .capability-item h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .code-copy-btn:hover {
+            background: #667eea;
+        }
+        
+        .code-copy-btn.copied {
+            background: #48bb78;
+        }
+        
+        .code-example .comment {
+            color: #68d391;
+        }
+        
+        .code-example .keyword {
+            color: #63b3ed;
+        }
+        
+        .code-example .string {
+            color: #fbb6ce;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .pricing-item {
+            background: #f8f9ff;
+            border: 3px solid #e1e5f2;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-item:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+        
+        .pricing-item.featured {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .pricing-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .pricing-item.featured h3 {
+            color: white;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .testimonial {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            font-style: italic;
+        }
+        
+        .contact {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            color: white;
+            border-bottom-color: white;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 10px 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+        }
+        
+        @media (max-width: 768px) {
+            .skills-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 25px;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Roblox Portfolio</h1>
+            <p>Junior Roblox Developer | Ready to Contribute</p>
+            <div class="header-cta">
+                💡 Fresh perspective • 🚀 Eager to learn • 💰 Budget-friendly rates
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Why Hire Me?</h2>
+            <div class="value-grid">
+                <div class="value-item">
+                    <span class="icon">💰</span>
+                    <h3>Good Value for Money</h3>
+                    <p>Get quality scripts at junior developer rates. Perfect for smaller projects or teams on a budget who still want reliable code.</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">🔥</span>
+                    <h3>Really Motivated</h3>
+                    <p>I'm building my reputation and will work extra hard to make sure your project turns out great. Your success helps me succeed too.</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">⚡</span>
+                    <h3>Fast Work</h3>
+                    <p>No big backlog of projects. I can start right away and usually finish things within 24-48 hours.</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">🧠</span>
+                    <h3>Fresh Ideas</h3>
+                    <p>I bring new coding methods and creative solutions, without being stuck in old ways of doing things.</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">📚</span>
+                    <h3>Always Learning</h3>
+                    <p>I'm constantly studying and getting better. You get someone who's always picking up new tricks and better ways to code.</p>
+                </div>
+                <div class="value-item">
+                    <span class="icon">🤝</span>
+                    <h3>Good Communication</h3>
+                    <p>Clear updates, detailed explanations, and quick responses to messages. I'll always keep you in the loop about your project.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>What I Can Do For You</h2>
+            
+            <div class="capability-item">
+                <h3>🔧 Basic Game Mechanics</h3>
+                <p>I can create essential game systems that make your project work smoothly:</p>
+                <ul style="margin: 15px 0; padding-left: 20px; line-height: 2;">
+                    <li>Player movement and controls</li>
+                    <li>Interactive objects (doors, buttons, switches)</li>
+                    <li>Collection systems (coins, power-ups, items)</li>
+                    <li>Simple combat mechanics</li>
+                    <li>Teleportation and spawn systems</li>
+                </ul>
+                
+                <div class="code-example">
+                    <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+<span class="comment">-- Power-up collection with effects</span>
+<span class="keyword">local</span> powerUp = script.Parent
+<span class="keyword">local</span> sound = powerUp.CollectSound
+
+powerUp.Touched:Connect(<span class="keyword">function</span>(hit)
+    <span class="keyword">local</span> player = game.Players:GetPlayerFromCharacter(hit.Parent)
+    <span class="keyword">if</span> player <span class="keyword">then</span>
+        sound:Play()
+        player.leaderstats.Score.Value += 50
+        powerUp.Transparency = 1
+        wait(10) <span class="comment">-- Respawn after 10 seconds</span>
+        powerUp.Transparency = 0
+    <span class="keyword">end</span>
+<span class="keyword">end</span>)
+                </div>
+            </div>
+
+            <div class="capability-item">
+                <h3>🎨 User Interface & GUIs</h3>
+                <p>Clean, responsive interfaces that enhance player experience:</p>
+                <ul style="margin: 15px 0; padding-left: 20px; line-height: 2;">
+                    <li>Main menus and navigation systems</li>
+                    <li>Inventory and shop interfaces</li>
+                    <li>Settings and options panels</li>
+                    <li>HUD elements (health, score, timers)</li>
+                    <li>Notification and dialog systems</li>
+                </ul>
+                
+                <div class="code-example">
+                    <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+<span class="comment">-- Smooth notification system</span>
+<span class="keyword">local</span> <span class="keyword">function</span> showNotification(player, message)
+    <span class="keyword">local</span> gui = player.PlayerGui.NotificationGui
+    <span class="keyword">local</span> notification = gui.Frame
+    
+    notification.TextLabel.Text = message
+    notification:TweenPosition(UDim2.new(0.5, 0, 0.1, 0), <span class="string">"Out"</span>, <span class="string">"Quad"</span>, 0.5)
+    
+    wait(3)
+    notification:TweenPosition(UDim2.new(0.5, 0, -0.1, 0), <span class="string">"Out"</span>, <span class="string">"Quad"</span>, 0.5)
+<span class="keyword">end</span>
+                </div>
+            </div>
+
+            <div class="capability-item">
+                <h3>📊 Data & Progression Systems</h3>
+                <p>Systems that keep players engaged and progressing:</p>
+                <ul style="margin: 15px 0; padding-left: 20px; line-height: 2;">
+                    <li>Leaderboards and statistics tracking</li>
+                    <li>Experience and level systems</li>
+                    <li>Achievement and reward mechanics</li>
+                    <li>Currency and economy basics</li>
+                    <li>Save/load functionality</li>
+                </ul>
+                
+                <div class="code-example">
+                    <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+<span class="comment">-- XP and automatic leveling system</span>
+<span class="keyword">local</span> <span class="keyword">function</span> giveXP(player, amount)
+    <span class="keyword">local</span> stats = player.leaderstats
+    stats.XP.Value = stats.XP.Value + amount
+    
+    <span class="keyword">local</span> xpNeeded = stats.Level.Value * 100
+    <span class="keyword">if</span> stats.XP.Value >= xpNeeded <span class="keyword">then</span>
+        stats.Level.Value = stats.Level.Value + 1
+        stats.XP.Value = 0
+        <span class="comment">-- Add level up effects here</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+                </div>
+            </div>
+
+            <div class="capability-item">
+                <h3>🎯 Custom Solutions</h3>
+                <p>Tailored features built specifically for your project needs:</p>
+                <ul style="margin: 15px 0; padding-left: 20px; line-height: 2;">
+                    <li>Script modifications and bug fixes</li>
+                    <li>Feature additions to existing systems</li>
+                    <li>Performance optimization</li>
+                    <li>Code documentation and organization</li>
+                    <li>Tutorial and onboarding systems</li>
+                </ul>
+                
+                <div class="code-example">
+                    <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+<span class="comment">-- Smart teleport pad with cooldown</span>
+<span class="keyword">local</span> pad = script.Parent
+<span class="keyword">local</span> destination = workspace.TeleportTarget
+<span class="keyword">local</span> cooldowns = {}
+
+pad.Touched:Connect(<span class="keyword">function</span>(hit)
+    <span class="keyword">local</span> player = game.Players:GetPlayerFromCharacter(hit.Parent)
+    <span class="keyword">if</span> player <span class="keyword">and not</span> cooldowns[player.Name] <span class="keyword">then</span>
+        cooldowns[player.Name] = <span class="keyword">true</span>
+        hit.Parent.HumanoidRootPart.CFrame = destination.CFrame
+        wait(3)
+        cooldowns[player.Name] = <span class="keyword">nil</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>)
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Larger Script Example</h2>
+            <p style="margin-bottom: 20px;">Here's a more complete script I can create - a simple zombie survival game system with spawning, health, and scoring:</p>
+            
+            <div class="code-example" style="height: 400px; overflow-y: scroll;">
+                <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+<span class="comment">-- Zombie Survival Game Script (ServerScriptService)</span>
+<span class="comment">-- This script handles zombie spawning, player stats, and basic survival mechanics</span>
+
+<span class="keyword">local</span> Players = game:GetService(<span class="string">"Players"</span>)
+<span class="keyword">local</span> RunService = game:GetService(<span class="string">"RunService"</span>)
+<span class="keyword">local</span> Debris = game:GetService(<span class="string">"Debris"</span>)
+<span class="keyword">local</span> ReplicatedStorage = game:GetService(<span class="string">"ReplicatedStorage"</span>)
+
+<span class="comment">-- Settings</span>
+<span class="keyword">local</span> ZOMBIE_SPAWN_TIME = 5 <span class="comment">-- seconds between spawns</span>
+<span class="keyword">local</span> MAX_ZOMBIES = 10 <span class="comment">-- maximum zombies at once</span>
+<span class="keyword">local</span> ZOMBIE_HEALTH = 100
+<span class="keyword">local</span> ZOMBIE_SPEED = 8
+<span class="keyword">local</span> POINTS_PER_KILL = 10
+
+<span class="comment">-- Variables</span>
+<span class="keyword">local</span> zombies = {}
+<span class="keyword">local</span> spawnPoints = {}
+<span class="keyword">local</span> lastSpawnTime = 0
+<span class="keyword">local</span> gameRunning = <span class="keyword">true</span>
+
+<span class="comment">-- Find all spawn points in workspace</span>
+<span class="keyword">for</span> _, part <span class="keyword">in</span> pairs(workspace:GetChildren()) <span class="keyword">do</span>
+    <span class="keyword">if</span> part.Name == <span class="string">"ZombieSpawn"</span> <span class="keyword">then</span>
+        table.insert(spawnPoints, part)
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">-- Create leaderstats when player joins</span>
+Players.PlayerAdded:Connect(<span class="keyword">function</span>(player)
+    <span class="keyword">local</span> leaderstats = Instance.new(<span class="string">"Folder"</span>)
+    leaderstats.Name = <span class="string">"leaderstats"</span>
+    leaderstats.Parent = player
+    
+    <span class="keyword">local</span> kills = Instance.new(<span class="string">"IntValue"</span>)
+    kills.Name = <span class="string">"Kills"</span>
+    kills.Value = 0
+    kills.Parent = leaderstats
+    
+    <span class="keyword">local</span> points = Instance.new(<span class="string">"IntValue"</span>)
+    points.Name = <span class="string">"Points"</span>
+    points.Value = 0
+    points.Parent = leaderstats
+    
+    <span class="keyword">local</span> survived = Instance.new(<span class="string">"IntValue"</span>)
+    survived.Name = <span class="string">"Time Survived"</span>
+    survived.Value = 0
+    survived.Parent = leaderstats
+<span class="keyword">end</span>)
+
+<span class="comment">-- Function to create a zombie</span>
+<span class="keyword">local function</span> createZombie(spawnPosition)
+    <span class="comment">-- Create zombie model</span>
+    <span class="keyword">local</span> zombie = Instance.new(<span class="string">"Model"</span>)
+    zombie.Name = <span class="string">"Zombie"</span>
+    zombie.Parent = workspace
+    
+    <span class="comment">-- Create zombie parts</span>
+    <span class="keyword">local</span> head = Instance.new(<span class="string">"Part"</span>)
+    head.Name = <span class="string">"Head"</span>
+    head.Size = Vector3.new(2, 1, 1)
+    head.BrickColor = BrickColor.new(<span class="string">"Bright green"</span>)
+    head.TopSurface = Enum.SurfaceType.Smooth
+    head.BottomSurface = Enum.SurfaceType.Smooth
+    head.Parent = zombie
+    
+    <span class="keyword">local</span> torso = Instance.new(<span class="string">"Part"</span>)
+    torso.Name = <span class="string">"Torso"</span>
+    torso.Size = Vector3.new(2, 2, 1)
+    torso.BrickColor = BrickColor.new(<span class="string">"Bright green"</span>)
+    torso.TopSurface = Enum.SurfaceType.Smooth
+    torso.BottomSurface = Enum.SurfaceType.Smooth
+    torso.Parent = zombie
+    
+    <span class="comment">-- Position zombie</span>
+    zombie:SetPrimaryPartCFrame(CFrame.new(spawnPosition + Vector3.new(0, 3, 0)))
+    torso.CFrame = CFrame.new(spawnPosition + Vector3.new(0, 3, 0))
+    head.CFrame = torso.CFrame + Vector3.new(0, 1.5, 0)
+    
+    <span class="comment">-- Add humanoid</span>
+    <span class="keyword">local</span> humanoid = Instance.new(<span class="string">"Humanoid"</span>)
+    humanoid.MaxHealth = ZOMBIE_HEALTH
+    humanoid.Health = ZOMBIE_HEALTH
+    humanoid.WalkSpeed = ZOMBIE_SPEED
+    humanoid.Parent = zombie
+    
+    <span class="comment">-- Weld parts together</span>
+    <span class="keyword">local</span> neck = Instance.new(<span class="string">"WeldConstraint"</span>)
+    neck.Part0 = torso
+    neck.Part1 = head
+    neck.Parent = torso
+    
+    <span class="comment">-- Add zombie to tracking</span>
+    table.insert(zombies, zombie)
+    
+    <span class="comment">-- Handle zombie death</span>
+    humanoid.Died:Connect(<span class="keyword">function</span>()
+        <span class="comment">-- Find who killed the zombie</span>
+        <span class="keyword">local</span> tag = zombie:FindFirstChild(<span class="string">"creator"</span>)
+        <span class="keyword">if</span> tag <span class="keyword">and</span> tag.Value <span class="keyword">then</span>
+            <span class="keyword">local</span> player = tag.Value
+            <span class="keyword">if</span> player <span class="keyword">and</span> player.leaderstats <span class="keyword">then</span>
+                player.leaderstats.Kills.Value = player.leaderstats.Kills.Value + 1
+                player.leaderstats.Points.Value = player.leaderstats.Points.Value + POINTS_PER_KILL
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        
+        <span class="comment">-- Remove from tracking</span>
+        <span class="keyword">for</span> i, v <span class="keyword">in</span> pairs(zombies) <span class="keyword">do</span>
+            <span class="keyword">if</span> v == zombie <span class="keyword">then</span>
+                table.remove(zombies, i)
+                <span class="keyword">break</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        
+        <span class="comment">-- Clean up zombie after 3 seconds</span>
+        Debris:AddItem(zombie, 3)
+    <span class="keyword">end</span>)
+    
+    <span class="comment">-- Simple AI: chase nearest player</span>
+    spawn(<span class="keyword">function</span>()
+        <span class="keyword">while</span> zombie.Parent <span class="keyword">and</span> humanoid.Health > 0 <span class="keyword">do</span>
+            <span class="keyword">local</span> nearestPlayer = <span class="keyword">nil</span>
+            <span class="keyword">local</span> shortestDistance = math.huge
+            
+            <span class="keyword">for</span> _, player <span class="keyword">in</span> pairs(Players:GetPlayers()) <span class="keyword">do</span>
+                <span class="keyword">if</span> player.Character <span class="keyword">and</span> player.Character:FindFirstChild(<span class="string">"HumanoidRootPart"</span>) <span class="keyword">then</span>
+                    <span class="keyword">local</span> distance = (zombie.Torso.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                    <span class="keyword">if</span> distance < shortestDistance <span class="keyword">then</span>
+                        shortestDistance = distance
+                        nearestPlayer = player
+                    <span class="keyword">end</span>
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+            
+            <span class="keyword">if</span> nearestPlayer <span class="keyword">then</span>
+                humanoid:MoveTo(nearestPlayer.Character.HumanoidRootPart.Position)
+            <span class="keyword">end</span>
+            
+            wait(1) <span class="comment">-- Update AI every second</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>)
+    
+    <span class="keyword">return</span> zombie
+<span class="keyword">end</span>
+
+<span class="comment">-- Main game loop</span>
+RunService.Heartbeat:Connect(<span class="keyword">function</span>()
+    <span class="keyword">if</span> <span class="keyword">not</span> gameRunning <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">end</span>
+    
+    <span class="keyword">local</span> currentTime = tick()
+    
+    <span class="comment">-- Spawn zombies</span>
+    <span class="keyword">if</span> currentTime - lastSpawnTime >= ZOMBIE_SPAWN_TIME <span class="keyword">and</span> #zombies < MAX_ZOMBIES <span class="keyword">and</span> #spawnPoints > 0 <span class="keyword">then</span>
+        <span class="keyword">local</span> randomSpawn = spawnPoints[math.random(1, #spawnPoints)]
+        createZombie(randomSpawn.Position)
+        lastSpawnTime = currentTime
+    <span class="keyword">end</span>
+    
+    <span class="comment">-- Update player survival time</span>
+    <span class="keyword">for</span> _, player <span class="keyword">in</span> pairs(Players:GetPlayers()) <span class="keyword">do</span>
+        <span class="keyword">if</span> player.Character <span class="keyword">and</span> player.Character:FindFirstChild(<span class="string">"Humanoid"</span>) <span class="keyword">then</span>
+            <span class="keyword">if</span> player.Character.Humanoid.Health > 0 <span class="keyword">then</span>
+                player.leaderstats[<span class="string">"Time Survived"</span>].Value = math.floor(currentTime - (player:GetAttribute(<span class="string">"StartTime"</span>) <span class="keyword">or</span> currentTime))
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>)
+
+<span class="comment">-- Set start time for players</span>
+Players.PlayerAdded:Connect(<span class="keyword">function</span>(player)
+    player:SetAttribute(<span class="string">"StartTime"</span>, tick())
+<span class="keyword">end</span>)
+
+print(<span class="string">"Zombie Survival Game loaded! Make sure you have parts named 'ZombieSpawn' in workspace."</span>)
+            </div>
+            
+            <p style="margin-top: 15px; color: #666;">
+                <strong>What this script does:</strong> Creates a zombie survival game with AI zombies that chase players, leaderboard tracking, and automatic spawning. Shows I can work with services, loops, AI logic, and game systems.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>My Technical Foundation</h2>
+            <div style="margin-top: 25px;">
+                <h3 style="color: #667eea; margin-bottom: 20px;">✅ What I'm Confident With</h3>
+                <ul class="skills-list">
+                    <li><strong>Lua Fundamentals:</strong> Variables, functions, loops, tables</li>
+                    <li><strong>Roblox Studio:</strong> Navigation, building, scripting</li>
+                    <li><strong>Player Interaction:</strong> Touch events, click detection</li>
+                    <li><strong>Basic GUIs:</strong> Frames, buttons, text elements</li>
+                    <li><strong>Sound & Effects:</strong> Audio implementation, particles</li>
+                    <li><strong>TweenService:</strong> Smooth animations and transitions</li>
+                    <li><strong>Leaderstats:</strong> Player statistics and tracking</li>
+                    <li><strong>Workspace Manipulation:</strong> Moving, rotating, scaling parts</li>
+                    <li><strong>Remote Events:</strong> Client-server communication basics</li>
+                    <li><strong>Module Scripts:</strong> Code organization and reusability</li>
+                    <li><strong>Debugging:</strong> Testing and error handling</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Competitive Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-item">
+                    <h3>Simple Scripts</h3>
+                    <div class="price">3K-8K R$</div>
+                    <ul style="text-align: left; line-height: 2;">
+                        <li>Basic interactions</li>
+                        <li>Simple GUIs</li>
+                        <li>Door systems</li>
+                        <li>Collection mechanics</li>
+                        <li>24-hour delivery</li>
+                    </ul>
+                </div>
+                <div class="pricing-item featured">
+                    <h3>Game Features</h3>
+                    <div class="price">10K-25K R$</div>
+                    <ul style="text-align: left; line-height: 2;">
+                        <li>Multi-part systems</li>
+                        <li>Advanced GUIs</li>
+                        <li>Leaderboards</li>
+                        <li>Mini-games</li>
+                        <li>2-3 day delivery</li>
+                    </ul>
+                </div>
+                <div class="pricing-item">
+                    <h3>Complete Systems</h3>
+                    <div class="price">30K-75K R$</div>
+                    <ul style="text-align: left; line-height: 2;">
+                        <li>Full game mechanics</li>
+                        <li>Data persistence</li>
+                        <li>Complex interactions</li>
+                        <li>Multiple features</li>
+                        <li>1-2 week delivery</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">
+                💰 Primary payment: Robux | Also accept USD & EUR
+            </p>
+            <p style="text-align: center; margin-top: 25px; font-style: italic; color: #666;">
+                💡 All projects include free revisions and ongoing support for 30 days
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>What You Can Expect</h2>
+            
+            <div class="testimonial">
+                <p><strong>Clear Communication:</strong> "I'll keep you updated on progress and ask questions when I need clarification. I respond to messages quickly and always keep you informed about your project status."</p>
+            </div>
+            
+            <div class="testimonial">
+                <p><strong>No Delays:</strong> "I follow deadlines strictly and deliver on time. If something unexpected comes up, I'll let you know immediately and work out a solution together."</p>
+            </div>
+            
+            <div class="testimonial">
+                <p><strong>Clean Code with Comments:</strong> "I write clear comments in my scripts to explain what different parts do. This helps you understand and modify the code if needed."</p>
+            </div>
+            
+            <div class="testimonial">
+                <p><strong>Flexible Commissions:</strong> "I handle both short-term and long-term projects, though I prefer shorter commissions (1-3 days) as they allow me to focus fully on your specific needs."</p>
+            </div>
+        </section>
+
+        <section class="section contact">
+            <h2>Ready to Work Together?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Let's talk about your project! I respond within 2-4 hours.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>💬 Discord</h3>
+                    <p>scripter/commissioner</p>
+                    <small>Primary contact method</small>
+                </div>
+                <div class="contact-item">
+                    <h3>🎮 Roblox</h3>
+                    <p>@eestionparim103</p>
+                    <small>In-platform messaging</small>
+                </div>
+                <div class="contact-item">
+                    <h3>💰 Payment</h3>
+                    <p>Robux (Preferred)</p>
+                    <small>USD & EUR accepted</small>
+                </div>
+                <div class="contact-item">
+                    <h3>⏰ Availability</h3>
+                    <p>7 days a week</p>
+                    <small>Quick response guaranteed</small>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <a href="#" class="btn">💬 Contact Me</a>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 1.1rem;">
+                <strong>Special Offer:</strong> First-time clients get 500 Robux discount on their initial project!
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling and animations
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        window.addEventListener('load', () => {
+            const header = document.querySelector('.header');
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-30px)';
+            header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 200);
+        });
+        
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.parentElement;
+            const codeText = codeBlock.textContent.replace('Copy', '').trim();
+            
+            navigator.clipboard.writeText(codeText).then(function() {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function() {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = codeText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
+</html>
